@@ -25,6 +25,8 @@ image = Image.open(stream)
 #crop square
 image = image.crop((0,0,720,720))
 #convert to grey
-image = image.convert(L)
+image = image.convert('L')
 
-thumb = image.thumbnail((25,25))
+image.thumbnail((25,25))
+
+pxls = list(image.getdata())
