@@ -24,14 +24,13 @@ with picamera.PiCamera() as camera:
 stream.seek(0)
 image = Image.open(stream)
 
-# initial test - show image
-image.show()
-time.sleep(10)
+#crop square
+image = image.crop((0,0,720,720))
+#convert to grey
+image = image.convert('L')
 
-# #crop square
-# image = image.crop((0,0,720,720))
-# #convert to grey
-# image = image.convert('L')
+# test - show image
+image.show()
 #
 # image.thumbnail((25,25))
 #
