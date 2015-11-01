@@ -41,6 +41,10 @@ image.thumbnail((25,25))
 #
 pxls = list(image.getdata())
 
+# convert pixels to 16 levels from 256
+for p in pxls:
+    p = p // 16
+
 # look at pixel values in 25 x 25 array
 i = 0
 for p in pxls:
@@ -48,4 +52,3 @@ for p in pxls:
     if i % 25 == 24:
         print '\n'
     i += 1
-    
