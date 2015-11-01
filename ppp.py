@@ -31,6 +31,7 @@ image = image.convert('L')
 
 # test - show image
 image.show()
+image.save("~/test.jpg")
 #
 # image.thumbnail((25,25))
 #
