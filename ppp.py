@@ -25,13 +25,13 @@ stream.seek(0)
 image = Image.open(stream)
 
 #crop square
-image = image.crop((0,0,720,720))
+image = image.crop((280,0,1000,720))
 #convert to grey
 image = image.convert('L')
 
 # test - show image
 image.show()
-imgout = open('~\temp.jpg', 'w')
+imgout = open('/home/pi/temp.jpg', 'w')
 image.save(imgout)
 imgout.close()
 #
