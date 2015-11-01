@@ -19,7 +19,7 @@ with picamera.PiCamera() as camera:
     camera.vflip = True
     camera.start_preview()
     time.sleep(2)
-    camera.capture(stream, format='jpeg')
+    camera.capture(stream, format='bmp')
 # "Rewind" the stream to the beginning so we can read its content
 stream.seek(0)
 image = Image.open(stream)
@@ -33,7 +33,7 @@ image = image.convert('L')
 image.show()
 
 image.thumbnail((25,25))
-imgout = open('/home/pi/temp.jpg', 'w')
+imgout = open('/home/pi/temp.bmp', 'w')
 image.save(imgout)
 imgout.close()
 #
