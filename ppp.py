@@ -29,12 +29,20 @@ image = image.crop((280,0,1000,720))
 #convert to grey
 image = image.convert('L')
 
-# test - show image
-image.show()
+# # test - show image
+# image.show()
 
 image.thumbnail((25,25))
-imgout = open('/home/pi/temp.bmp', 'w')
-image.save(imgout)
-imgout.close()
+
+# # save image to file as test
+# imgout = open('/home/pi/temp.bmp', 'w')
+# image.save(imgout)
+# imgout.close()
 #
-# pxls = list(image.getdata())
+pxls = list(image.getdata())
+
+# look at pixel values in 25 x 25 array
+for i in len(pxls):
+    print pxls[i],
+    if i % 25 == 24:
+        print '\n'
