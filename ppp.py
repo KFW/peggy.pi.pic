@@ -51,7 +51,7 @@ for i, p in enumerate(pxls):
 #         print '\n'
 #     i += 1
 
-image.putdata(pxl, scale = 16) #scale by 16 for regular display
+image.putdata(pxls, scale = 16) #scale by 16 for regular display
 # # save image to file as test
 imgout = open('/home/pi/temp.bmp', 'w')
 image.save(imgout)
