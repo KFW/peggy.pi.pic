@@ -12,47 +12,6 @@ import time
 import picamera
 from PIL import Image
 
-# Create the in-memory stream
-stream = io.BytesIO()
-with picamera.PiCamera() as camera:
-    camera.hflip = True
-    camera.vflip = True
-    camera.start_preview()
-    time.sleep(2)
-    camera.capture(stream, format='bmp')
-# "Rewind" the stream to the beginning so we can read its content
-stream.seek(0)
-image = Image.open(stream)
-
-#crop square
-image = image.crop((280,0,1000,720))
-#convert to grey
-image = image.convert('L')
-image.thumbnail((25,25))
-pxls = list(image.getdata())
-
-printpxl(pxls)
-
-# convert pixels to 16 levels from 256
-# note: may want to check range of values and rescale
-# in order to preserve as much info as possible
-maxpxl = max(pxls)
-minpxl = min(pxls)
-deltapxl = maxpxl - minpxl
-
-for i, p in enumerate(pxls):
-    scaledpxl = (pxls[i] - minpxl) * 255 / deltapxl
-    pxls[i] = scaledpxl//16
-
-
-printpxl(pxls)
-
-image.putdata(pxls, scale = 16) #scale by 16 for regular display
-# # save image to file as test
-imgout = open('/home/pi/temp.bmp', 'w')
-image.save(imgout)
-imgout.close()
-
 def printpxl(pxllist):
     # # look at pixel values in 25 x 25 array
     i = 0
@@ -61,3 +20,48 @@ def printpxl(pxllist):
         if i % 25 == 24:
             print '\n'
         i += 1
+
+def main()
+    # Create the in-memory stream
+    stream = io.BytesIO()
+    with picamera.PiCamera() as camera:
+        camera.hflip = True
+        camera.vflip = True
+        camera.start_preview()
+        time.sleep(2)
+        camera.capture(stream, format='bmp')
+    # "Rewind" the stream to the beginning so we can read its content
+    stream.seek(0)
+    image = Image.open(stream)
+
+    #crop square
+    image = image.crop((280,0,1000,720))
+    #convert to grey
+    image = image.convert('L')
+    image.thumbnail((25,25))
+    pxls = list(image.getdata())
+
+    printpxl(pxls)
+
+    # convert pixels to 16 levels from 256
+    # note: may want to check range of values and rescale
+    # in order to preserve as much info as possible
+    maxpxl = max(pxls)
+    minpxl = min(pxls)
+    deltapxl = maxpxl - minpxl
+
+    for i, p in enumerate(pxls):
+        scaledpxl = (pxls[i] - minpxl) * 255 / deltapxl
+        pxls[i] = scaledpxl//16
+
+
+    printpxl(pxls)
+
+    image.putdata(pxls, scale = 16) #scale by 16 for regular display
+    # # save image to file as test
+    imgout = open('/home/pi/temp.bmp', 'w')
+    image.save(imgout)
+    imgout.close()
+
+if __name__ = '__main__':
+    main()
