@@ -31,7 +31,9 @@ image = image.convert('L')
 
 # test - show image
 image.show()
-image.save("~/test.jpg")
+imgout = open('~\temp.jpg', 'w')
+image.save(imgout)
+imgout.close()
 #
 # image.thumbnail((25,25))
 #
