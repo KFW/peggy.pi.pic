@@ -21,7 +21,7 @@ def printpxl(pxllist):
             print '\n'
         i += 1
 
-def main()
+def main():
     # Create the in-memory stream
     stream = io.BytesIO()
     with picamera.PiCamera() as camera:
