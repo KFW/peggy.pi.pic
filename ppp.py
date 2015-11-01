@@ -44,12 +44,12 @@ for i, p in enumerate(pxls):
 
 
 # # look at pixel values in 25 x 25 array
-# i = 0
-# for p in pxls:
-#     print p,
-#     if i % 25 == 24:
-#         print '\n'
-#     i += 1
+i = 0
+for p in pxls:
+    print p,
+    if i % 25 == 24:
+        print '\n'
+    i += 1
 
 image.putdata(pxls, scale = 16) #scale by 16 for regular display
 # # save image to file as test
