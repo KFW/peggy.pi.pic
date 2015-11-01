@@ -34,8 +34,8 @@ pxls = list(image.getdata())
 # convert pixels to 16 levels from 256
 # note: may want to check range of values and rescale
 # in order to preserve as much info as possible
-maxpxl = max(list)
-minpxl = min(list)
+maxpxl = max(pxls)
+minpxl = min(pxls)
 deltapxl = maxpxl - minpxl
 
 for i, p in enumerate(pxls):
