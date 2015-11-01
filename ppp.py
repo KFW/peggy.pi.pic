@@ -15,6 +15,8 @@ from PIL import Image
 # Create the in-memory stream
 stream = io.BytesIO()
 with picamera.PiCamera() as camera:
+    camera.hflip = True
+    camera.vflip = True
     camera.start_preview()
     time.sleep(2)
     camera.capture(stream, format='jpeg')
@@ -24,6 +26,7 @@ image = Image.open(stream)
 
 # initial test - show image
 image.show()
+time.sleep(10)
 
 # #crop square
 # image = image.crop((0,0,720,720))
