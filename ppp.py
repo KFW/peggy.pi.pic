@@ -31,10 +31,10 @@ image = image.convert('L')
 
 # test - show image
 image.show()
+
+image.thumbnail((25,25))
 imgout = open('/home/pi/temp.jpg', 'w')
 image.save(imgout)
 imgout.close()
-#
-# image.thumbnail((25,25))
 #
 # pxls = list(image.getdata())
