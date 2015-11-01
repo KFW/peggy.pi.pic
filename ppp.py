@@ -42,8 +42,8 @@ image.thumbnail((25,25))
 pxls = list(image.getdata())
 
 # convert pixels to 16 levels from 256
-for p in pxls:
-    p = p // 16
+for i, p in enumerate(pxls):
+    pxls[i] = p//16
 
 # look at pixel values in 25 x 25 array
 i = 0
