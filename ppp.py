@@ -12,14 +12,15 @@ import time
 import picamera
 from PIL import Image
 
-def printpxl(pxllist):
-    # # look at pixel values in 25 x 25 array
-    i = 0
-    for p in pxllist:
-        print p,
-        if i % 25 == 24:
-            print '\n'
-        i += 1
+# # print function for test purposes
+# def printpxl(pxllist):
+#     # # look at pixel values in 25 x 25 array
+#     i = 0
+#     for p in pxllist:
+#         print p,
+#         if i % 25 == 24:
+#             print '\n'
+#         i += 1
 
 def main():
     # Create the in-memory stream
@@ -41,11 +42,11 @@ def main():
     image.thumbnail((25,25))
     pxls = list(image.getdata())
 
-    printpxl(pxls)
+    ## print for test purposes
+    # printpxl(pxls)
 
     # convert pixels to 16 levels from 256
-    # note: may want to check range of values and rescale
-    # in order to preserve as much info as possible
+    # scale the range in order to maximize contrast
     maxpxl = max(pxls)
     minpxl = min(pxls)
     deltapxl = maxpxl - minpxl
@@ -54,14 +55,14 @@ def main():
         scaledpxl = (pxls[i] - minpxl) * 255 / deltapxl
         pxls[i] = scaledpxl//16
 
-
-    printpxl(pxls)
-
-    image.putdata(pxls, scale = 16) #scale by 16 for regular display
+    # #print for testing purposes
+    # printpxl(pxls)
+    #
+    # image.putdata(pxls, scale = 16) #scale by 16 for regular display
     # # save image to file as test
-    imgout = open('/home/pi/temp.bmp', 'w')
-    image.save(imgout)
-    imgout.close()
+    # imgout = open('/home/pi/temp.bmp', 'w')
+    # image.save(imgout)
+    # imgout.close()
 
 if __name__ == '__main__':
     main()
