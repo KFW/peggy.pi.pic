@@ -28,27 +28,31 @@ image = Image.open(stream)
 image = image.crop((280,0,1000,720))
 #convert to grey
 image = image.convert('L')
-
-# # test - show image
-# image.show()
-
 image.thumbnail((25,25))
-
-# # save image to file as test
-# imgout = open('/home/pi/temp.bmp', 'w')
-# image.save(imgout)
-# imgout.close()
-#
 pxls = list(image.getdata())
 
 # convert pixels to 16 levels from 256
-for i, p in enumerate(pxls):
-    pxls[i] = p//16
+# note: may want to check range of values and rescale
+# in order to preserve as much info as possible
+maxpxl = max(list)
+minpxl = min(list)
+deltapxl = maxpxl - minpxl
 
-# look at pixel values in 25 x 25 array
-i = 0
-for p in pxls:
-    print p,
-    if i % 25 == 24:
-        print '\n'
-    i += 1
+for i, p in enumerate(pxls):
+    scaledpxl = (pxls[i] - minpxl) * 255 / deltapxl
+    pxls[i] = scaledpxl//16
+
+
+# # look at pixel values in 25 x 25 array
+# i = 0
+# for p in pxls:
+#     print p,
+#     if i % 25 == 24:
+#         print '\n'
+#     i += 1
+
+image.putdata(pxl, scale = 16) #scale by 16 for regular display
+# # save image to file as test
+imgout = open('/home/pi/temp.bmp', 'w')
+image.save(imgout)
+imgout.close()
