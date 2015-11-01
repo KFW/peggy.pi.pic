@@ -63,5 +63,5 @@ def main():
     image.save(imgout)
     imgout.close()
 
-if __name__ = '__main__':
+if __name__ == '__main__':
     main()
