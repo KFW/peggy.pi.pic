@@ -42,7 +42,10 @@ image.thumbnail((25,25))
 pxls = list(image.getdata())
 
 # look at pixel values in 25 x 25 array
-for i in len(pxls):
-    print pxls[i],
+i = 0
+for p in pxls:
+    print p,
     if i % 25 == 24:
         print '\n'
+    i += 1
+    
