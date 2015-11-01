@@ -31,6 +31,8 @@ image = image.convert('L')
 image.thumbnail((25,25))
 pxls = list(image.getdata())
 
+printpxl(pxls)
+
 # convert pixels to 16 levels from 256
 # note: may want to check range of values and rescale
 # in order to preserve as much info as possible
@@ -43,16 +45,19 @@ for i, p in enumerate(pxls):
     pxls[i] = scaledpxl//16
 
 
-# # look at pixel values in 25 x 25 array
-i = 0
-for p in pxls:
-    print p,
-    if i % 25 == 24:
-        print '\n'
-    i += 1
+printpxl(pxls)
 
 image.putdata(pxls, scale = 16) #scale by 16 for regular display
 # # save image to file as test
 imgout = open('/home/pi/temp.bmp', 'w')
 image.save(imgout)
 imgout.close()
+
+def printpxl(pxllist):
+    # # look at pixel values in 25 x 25 array
+    i = 0
+    for p in pxllist:
+        print p,
+        if i % 25 == 24:
+            print '\n'
+        i += 1
